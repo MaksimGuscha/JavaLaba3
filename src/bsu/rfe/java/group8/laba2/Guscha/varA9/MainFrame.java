@@ -39,6 +39,7 @@ public class MainFrame extends JFrame {
     private JMenuItem saveToTextMenuItem;
     private JMenuItem saveToGraphicsMenuItem;
     private JMenuItem searchValueMenuItem;
+    private JMenuItem showInfMenuItem;
     //поля ввода для считывания значений переменных
     private JTextField textFieldFrom;
     private JTextField textFieldTo;
@@ -69,6 +70,9 @@ public class MainFrame extends JFrame {
         //создаем пункт "таблица"
         JMenu tableMenu = new JMenu("Таблица");
         menuBar.add(tableMenu);
+        //создаем пункт справка
+        JMenu referenceMenu = new JMenu("Справка");
+        menuBar.add(referenceMenu);
         //Создать новое "действие" по осохранению в текстовый файл
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
             @Override
@@ -123,6 +127,15 @@ public class MainFrame extends JFrame {
         //добавить действие в меню "Таблица"
         searchValueMenuItem = tableMenu.add(searchValueAction);
         searchValueMenuItem.setEnabled(false);
+        Action refereceOboutMe = new AbstractAction("Справка") {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(MainFrame.this, "Автор - Гуща Максим, 8 Группа!", "Справка", JOptionPane.INFORMATION_MESSAGE);
+            }
+        };
+        //добавить действие в подменю справка
+        showInfMenuItem = referenceMenu.add(refereceOboutMe);
+        showInfMenuItem.setEnabled(true);
         //создаем области с полями для границ ввода на отрезке с шагом
         JLabel labelForFrom = new JLabel("X изменяется на интервале от:");
         textFieldFrom = new JTextField("0.0", 10);
