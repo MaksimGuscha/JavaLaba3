@@ -26,7 +26,7 @@ public class GornerTableModel extends AbstractTableModel {
         return step;
     }
     public int getColumnCount(){
-        return 2;
+        return 3;
     }
 
     @Override
@@ -42,13 +42,27 @@ public class GornerTableModel extends AbstractTableModel {
             case 0:
                 //если запрашивается значение 1-го столбца, то это Х
                 return x;
-            default:
+            case 1:
                 //если запрашивается значение 2-го столбца, то это значение многочлена
                 result[0] = 0.0;
                 for (int i = 0; i < coefficients.length; i++) {
                     result[0] += Math.pow(x, coefficients.length - 1 - i) * coefficients[i];
                 }
                 return result[0];
+            default:
+                result[0] = 0.0;
+                for (int i = 0; i < coefficients.length; i++) {
+                    result[0] += Math.pow(x, coefficients.length - 1 - i) * coefficients[i];
+                }
+                boolean flag = false;
+                if (result[0] > 0){
+                    flag = true;
+                }
+                if (flag == true){
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
     @Override
